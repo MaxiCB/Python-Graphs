@@ -1,11 +1,14 @@
 import random
 import string
-from util import Queue
+
+from graph.util import Queue
+
 
 class User:
     def __init__(self, name, user_id):
         self.name = name
         self.id = user_id
+
 
 class SocialGraph:
     def __init__(self):
@@ -57,16 +60,16 @@ class SocialGraph:
         # Create friendships
         for i in self.users:
             self.friendships[i] = set()
-        total_friendhsips = num_users * avg_friendships
+        total_friendships = num_users * avg_friendships
 
-        while total_friendhsips > 0:
+        while total_friendships > 0:
             user_1 = random.randint(1, num_users)
             user_2 = random.randint(1, num_users)
             while user_2 == user_1:
                 user_2 = random.randint(1, num_users)
             if user_2 not in self.friendships[user_1]:
                 self.add_friendship(user_1, user_2)
-                total_friendhsips -= 2
+                total_friendships -= 2
         # for _u, _key in enumerate(self.users):
         #     add = random.choices(range(1, num_users), k=avg_friendships)
         #     for item in add:
